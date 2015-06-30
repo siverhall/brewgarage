@@ -1,2 +1,2 @@
-# brewgarage
-Brewgarage as a MEAN stack application
+# Brew Garage
+Inventory and recipe storage online for home brewing.
