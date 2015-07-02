@@ -7,9 +7,14 @@ function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
     .state('home', {
-      url: '/home',
-      templateUrl: '/home.html',
-      controller: 'MainCtrl'
+        url: '/home',
+        templateUrl: '/home.html',
+        controller: 'MainCtrl',
+        resolve: {
+            postPromise: ['recipes', function(recipes){
+                return recipes.getAll();
+            }]
+        }
     })
     .state('recipes', {
     	url: '/recipes/{id}',
@@ -21,11 +26,16 @@ function($stateProvider, $urlRouterProvider) {
 }]);
 
 
-app.factory('recipes', [function(){
-    var wrap = {
+app.factory('recipes', ['$http', function($http){
+    var r = {
     	recipes: []
  	};
-  	return wrap;
+	r.getAll = function() {
+		return $http.get('/recipes').success(function(data){
+			angular.copy(data, r.recipes);
+		})
+	};
+  	return r;
 }]);
 
 
@@ -39,7 +49,7 @@ $scope.addRecipe = function(){
 	  $scope.recipes.push({
 	  	title: $scope.title, 
 	  	style: $scope.style,
-	  	size: $scope.size,
+	  	batchsize: $scope.batchsize,
 	  	boiltime: '60',
 	  	malts: [
 	  		{name: 'Pilsner malt', amount: '5 kg'}
@@ -51,7 +61,7 @@ $scope.addRecipe = function(){
 	  });
 	  $scope.title = '';
 	  $scope.style = '';
-	  $scope.size = '';
+	  $scope.batchsize = '';
 };
 }]);
 

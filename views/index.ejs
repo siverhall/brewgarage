@@ -19,7 +19,7 @@
     <h1>Brewgarage - My recipes</h1>
   </div>
 
-  <div ng-repeat="recipe in recipes |  orderBy: 'title'">
+  <div ng-repeat="recipe in recipes">
     {{recipe.title}} - {{recipe.style}} - How much? {{recipe.size}}
     <a href="#/recipes/{{$index}}">details</a>
   </div>
@@ -49,7 +49,7 @@
   </div>
   <div>
     Style: {{recipe.style}}
-    Batch size: {{recipe.size}} L
+    Batch size: {{recipe.batchsize}} L
     Boil time: {{recipe.boiltime}} min
   </div>
   <div>

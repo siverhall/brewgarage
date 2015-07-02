@@ -6,17 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var routes = require('./api/routes/index');
-var users = require('./api/routes/users');
-
-var app = express();
-
 var db = require('./config/db');
 
 require('./api/models/Recipe');
 require('./api/models/Hop');
 require('./api/models/Malt');
 require('./api/models/Yeast');
+
+var routes = require('./api/routes/index');
+var users = require('./api/routes/users');
+
+var app = express();
 
 mongoose.connect(db.url);
 

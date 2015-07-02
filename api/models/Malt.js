@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var MaltSchema = new Mongoose.Schema({
+var MaltSchema = new mongoose.Schema({
     name: String,
     amount: Number
 });
