@@ -13,6 +13,11 @@ var app = express();
 
 var db = require('./config/db');
 
+require('./api/models/Recipe');
+require('./api/models/Hop');
+require('./api/models/Malt');
+require('./api/models/Yeast');
+
 mongoose.connect(db.url);
 
 // view engine setup
