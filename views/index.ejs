@@ -25,13 +25,16 @@
   </div>
   <form ng-submit="addRecipe()">
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Title" ng-model="title" />
+      <input type="text" class="form-control" placeholder="Title" ng-model="form.title" />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Style" ng-model="style" />
+      <input type="text" class="form-control" placeholder="Style" ng-model="form.style" />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Batch size" ng-model="size"></input>
+      <input type="text" class="form-control" placeholder="Batch size" ng-model="form.batchsize" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Boiltime" ng-model="form.boiltime" />
     </div>
     <select ng-model="selectedHop" ng-options="hop.name for hop in hops | orderBy: 'name'">
       <option value="">Select hop</option>

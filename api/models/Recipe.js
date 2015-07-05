@@ -5,10 +5,11 @@ var RecipeSchema = new mongoose.Schema({
     style: String,
     batchsize: Number,
     boiltime: Number,
-    mash: {temp: Number, time: Number},
-    malts: [ {type: mongoose.Schema.Types.ObjectId, ref: 'Malt'} ],
-    hops: [ {type: mongoose.Schema.Types.ObjectId, ref: 'Hop'} ],
-    yeast: {type: mongoose.Schema.Types.ObjectId, ref: 'Yeast'},
+    mashtemp: Number,
+    mashtime: Number,
+    malts: [ {name: String, amount: Number} ],
+    hops: [ {name: String, alpha: Number, amount: Number, time: Number} ],
+    yeast: {name: String, temp: Number, days: Number},
     other: [{name: String, note: String}]
 });
 

@@ -3,9 +3,6 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Recipe = mongoose.model('Recipe');
-var Hop = mongoose.model('Hop');
-var Malt = mongoose.model('Malt');
-var Yeast = mongoose.model('Yeast');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -27,15 +27,20 @@ function($stateProvider, $urlRouterProvider) {
 
 
 app.factory('recipes', ['$http', function($http){
-    var r = {
+    var rec = {
     	recipes: []
  	};
-	r.getAll = function() {
+	rec.getAll = function() {
 		return $http.get('/recipes').success(function(data){
-			angular.copy(data, r.recipes);
+			angular.copy(data, rec.recipes);
 		})
 	};
-  	return r;
+    rec.create = function(recipe) {
+        return $http.post('/recipes', recipe).success(function(data){
+            rec.recipes.push(data);
+        });
+    };
+  	return rec;
 }]);
 
 
@@ -46,22 +51,23 @@ function($scope, recipes){
   $scope.hops = [{name: 'Amarillo'}, {name: 'Simcoe'}, {name: 'Citra'}];
 $scope.addRecipe = function(){
 	if (!$scope.title || !$scope.style) { return; }
-	  $scope.recipes.push({
-	  	title: $scope.title, 
-	  	style: $scope.style,
-	  	batchsize: $scope.batchsize,
-	  	boiltime: '60',
+	  recipes.create({
+	  	title: $scope.form.title,
+	  	style: $scope.form.style,
+	  	batchsize: $scope.form.batchsize,
+	  	boiltime: $scope.form.boiltime,
 	  	malts: [
-	  		{name: 'Pilsner malt', amount: '5 kg'}
+	  		{name: 'Pilsner malt', amount: '5'}
 	  	],
 	  	hops: [
-	  		{name: 'Amarillo', alpha: '7', amount: '10g', time: '45'}
+	  		{name: 'Amarillo', alpha: '7', amount: '10', time: '45'}
 	  	],
-	  	yeast: {name: 'Safale US-05', temp: '19c', days: '10'}
+	  	yeast: {name: 'Safale US-05', temp: '19', days: '10'}
 	  });
-	  $scope.title = '';
-	  $scope.style = '';
-	  $scope.batchsize = '';
+	  $scope.form.title = '';
+	  $scope.form.style = '';
+	  $scope.form.batchsize = '';
+	  $scope.form.boiltime = '';
 };
 }]);
 

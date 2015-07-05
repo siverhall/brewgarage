@@ -9,9 +9,6 @@ var mongoose = require('mongoose');
 var db = require('./config/db');
 
 require('./api/models/Recipe');
-require('./api/models/Hop');
-require('./api/models/Malt');
-require('./api/models/Yeast');
 
 var routes = require('./api/routes/index');
 var users = require('./api/routes/users');
